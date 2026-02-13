@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Happy Kiss Day Bubu 💋</title>
 
 <style>
@@ -55,6 +55,7 @@ button {
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
+    margin: 5px;
 }
 
 button:hover {
@@ -106,17 +107,32 @@ button:hover {
 
     <div class="gif-container" id="gifBox">
         <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
-             alt="Girl Kiss Bubu Dudu GIF">
+             alt="Girl Kiss Bubu Dudu GIF" />
     </div>
 
     <p>Sending you love, hugs & lots of kisses 💖</p>
 </div>
 
+<!-- Background music from your device -->
+<audio id="song" loop>
+  <source src="music2.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
 <script>
+const song = document.getElementById('song');
+
 function showGif() {
     document.getElementById("kissBtn").style.display = "none";
     document.getElementById("gifBox").style.display = "block";
 
+    // Play your local audio
+    song.volume = 0.3; // optional: reduce volume
+    song.play().catch(() => {
+        // Some browsers block autoplay until user interaction
+    });
+
+    // Floating hearts
     for (let i = 0; i < 12; i++) {
         createHeart();
     }
@@ -130,9 +146,7 @@ function createHeart() {
     heart.style.fontSize = (Math.random() * 20 + 12) + "px";
     document.body.appendChild(heart);
 
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
+    setTimeout(() => heart.remove(), 5000);
 }
 </script>
 
